@@ -46,11 +46,27 @@ document.addEventListener('touchend', event => {
   const deltaY = event.changedTouches[0].screenY - pageTouchStart.y;
   if (Math.max(Math.abs(deltaX), Math.abs(deltaY)) < 70) return;
   if (Math.abs(deltaX) > Math.abs(deltaY)) showPage(activePage + (deltaX < 0 ? 1 : -1));
-  else showPage(activePage + (deltaY < 0 ? 1 : -1));
+  else {
+    const panel = panels[activePage];
+    const hasMoreToScroll = panel.scrollHeight > panel.clientHeight + 4;
+    const atTop = panel.scrollTop <= 2;
+    const atBottom = panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 2;
+    if (deltaY < 0 && hasMoreToScroll && !atBottom) return;
+    if (deltaY > 0 && hasMoreToScroll && !atTop) return;
+    showPage(activePage + (deltaY < 0 ? 1 : -1));
+  }
 }, { passive: true });
 let wheelDistance = 0;
 let wheelTimer;
 document.addEventListener('wheel', event => {
+  const panel = panels[activePage];
+  const hasMoreToScroll = panel.scrollHeight > panel.clientHeight + 4;
+  const atTop = panel.scrollTop <= 2;
+  const atBottom = panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 2;
+  if (hasMoreToScroll && ((event.deltaY > 0 && !atBottom) || (event.deltaY < 0 && !atTop))) {
+    wheelDistance = 0;
+    return;
+  }
   wheelDistance += event.deltaY;
   if (Math.abs(wheelDistance) >= 70) {
     showPage(activePage + (wheelDistance > 0 ? 1 : -1));
