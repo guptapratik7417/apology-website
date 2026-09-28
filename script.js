@@ -3,6 +3,28 @@ const PERSONALIZATION = {
   name: 'Shivangi'
 };
 
+const loginGate = document.querySelector('#login-gate');
+const loginForm = document.querySelector('#login-form');
+if (window.APLOGY_LOGIN?.enabled && loginGate && loginForm) {
+  loginGate.hidden = false;
+  loginForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const form = new FormData(loginForm);
+    const username = String(form.get('username') || '');
+    const password = String(form.get('password') || '');
+    if (username === window.APLOGY_LOGIN.username && password === window.APLOGY_LOGIN.password) {
+      document.documentElement.classList.remove('login-required');
+      loginGate.hidden = true;
+      loginForm.reset();
+    } else {
+      document.querySelector('#login-error').textContent = 'That username or password didn’t match. Try again.';
+      loginForm.elements.password.value = '';
+    }
+  });
+} else if (loginGate) {
+  loginGate.remove();
+}
+
 document.querySelectorAll('[data-name]').forEach(node => { node.textContent = PERSONALIZATION.name; });
 
 const song = document.querySelector('#apology-song');
