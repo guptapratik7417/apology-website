@@ -4,7 +4,7 @@ A responsive, one-screen-at-a-time apology story inspired by the supplied screen
 
 ## Run locally
 
-The story is presented one screen at a time. Use Continue/Back, swipe horizontally, or use the left/right arrow keys. Open `index.html` in a browser, or serve this folder with any static file server (for example `python3 -m http.server 8000` from this directory) and visit `http://localhost:8000`.
+The story is presented one screen at a time. Use Continue/Back, swipe vertically or horizontally, scroll the mouse wheel, or use the arrow/Page keys. Horizontal swipes on the memory cards change photos. Open `index.html` in a browser, or serve this folder with any static file server (for example `python3 -m http.server 8000` from this directory) and visit `http://localhost:8000`.
 
 ## Personalize
 

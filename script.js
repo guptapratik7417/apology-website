@@ -26,9 +26,9 @@ function showPage(index) {
     const selected = pageIndex === activePage;
     panel.classList.toggle('active', selected);
     panel.setAttribute('aria-hidden', String(!selected));
+    if (selected) panel.scrollTop = 0;
   });
   document.querySelectorAll('.page-count').forEach(node => { node.textContent = `${activePage + 1} / ${panels.length}`; });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 document.querySelectorAll('.next-page').forEach(button => button.addEventListener('click', () => {
   startSong();
@@ -37,15 +37,32 @@ document.querySelectorAll('.next-page').forEach(button => button.addEventListene
 document.querySelectorAll('.prev-page').forEach(button => button.addEventListener('click', () => showPage(activePage - 1)));
 document.querySelector('.restart-page').addEventListener('click', () => showPage(0));
 showPage(0);
-let pageTouchX = 0;
-document.addEventListener('touchstart', event => { pageTouchX = event.changedTouches[0].screenX; }, { passive: true });
-document.addEventListener('touchend', event => {
-  const delta = event.changedTouches[0].screenX - pageTouchX;
-  if (Math.abs(delta) > 80) showPage(activePage + (delta < 0 ? 1 : -1));
+let pageTouchStart = { x: 0, y: 0 };
+document.addEventListener('touchstart', event => {
+  pageTouchStart = { x: event.changedTouches[0].screenX, y: event.changedTouches[0].screenY };
 }, { passive: true });
+document.addEventListener('touchend', event => {
+  const deltaX = event.changedTouches[0].screenX - pageTouchStart.x;
+  const deltaY = event.changedTouches[0].screenY - pageTouchStart.y;
+  if (Math.max(Math.abs(deltaX), Math.abs(deltaY)) < 70) return;
+  if (Math.abs(deltaX) > Math.abs(deltaY)) showPage(activePage + (deltaX < 0 ? 1 : -1));
+  else showPage(activePage + (deltaY < 0 ? 1 : -1));
+}, { passive: true });
+let wheelDistance = 0;
+let wheelTimer;
+document.addEventListener('wheel', event => {
+  wheelDistance += event.deltaY;
+  if (Math.abs(wheelDistance) >= 70) {
+    showPage(activePage + (wheelDistance > 0 ? 1 : -1));
+    wheelDistance = 0;
+  }
+  clearTimeout(wheelTimer);
+  wheelTimer = window.setTimeout(() => { wheelDistance = 0; }, 180);
+  event.preventDefault();
+}, { passive: false });
 document.addEventListener('keydown', event => {
-  if (event.key === 'ArrowRight') showPage(activePage + 1);
-  if (event.key === 'ArrowLeft') showPage(activePage - 1);
+  if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === 'PageDown') showPage(activePage + 1);
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowUp' || event.key === 'PageUp') showPage(activePage - 1);
 });
 
 const envelope = document.querySelector('.envelope-wrap');
