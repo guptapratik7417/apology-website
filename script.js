@@ -103,17 +103,21 @@ document.querySelector('.sound-toggle').addEventListener('click', async event =>
 });
 
 const cards = [...document.querySelectorAll('.polaroid')];
+const memoryPhotos = ['assets/moment-1.jpeg', 'assets/moment-2.jpeg', 'assets/moment-3.jpeg'];
 let memoryIndex = 0;
-function rotateMemories(direction = 1) {
-  memoryIndex = (memoryIndex + direction + 5) % 5;
-  const colors = ['#d8b5ec', '#efbbcc', '#9bcad8', '#edc77b', '#b8d2aa'];
-  const center = cards.find(card => card.classList.contains('current'));
-  const placeholder = center.querySelector('span');
-  const photo = center.querySelector('img');
-  if (photo && !photo.hidden) return;
-  center.style.background = colors[memoryIndex];
-  if (placeholder) placeholder.textContent = ['💜', '💗', '💙', '💛', '💚'][memoryIndex];
+function updateMemoryDeck() {
+  cards.forEach((card, position) => {
+    const photoIndex = (memoryIndex + position - 1 + memoryPhotos.length) % memoryPhotos.length;
+    const image = card.querySelector('img');
+    image.hidden = false;
+    image.src = memoryPhotos[photoIndex];
+  });
 }
+function rotateMemories(direction = 1) {
+  memoryIndex = (memoryIndex + direction + memoryPhotos.length) % memoryPhotos.length;
+  updateMemoryDeck();
+}
+updateMemoryDeck();
 cards.forEach((card, index) => card.addEventListener('click', () => rotateMemories(index === 0 ? -1 : 1)));
 const deck = document.querySelector('.polaroid-deck');
 let touchStartX = 0;

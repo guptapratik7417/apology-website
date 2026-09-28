@@ -11,7 +11,7 @@ The story is presented one screen at a time. Use Continue/Back, swipe horizontal
 1. The recipient name is currently Shivangi. To change it, edit `PERSONALIZATION.name` near the top of `script.js`.
 2. Edit the headings and paragraphs in `index.html` to change the apology wording.
 3. The letter text is in the `.letter-copy` paragraph. The video visibly cuts off after “I choose”, so add your own continuation there if desired.
-4. Add your photos as `assets/moment-1.jpg`, `assets/moment-2.jpg`, and `assets/moment-3.jpg` for the memories carousel, or change the image paths in `index.html`. The sign-off in the memories section is Pratik.
+4. Add your photos as `assets/moment-1.jpeg`, `assets/moment-2.jpeg`, and `assets/moment-3.jpeg` for the memories carousel, or change the image paths in `index.html`. The sign-off in the memories section is Pratik.
 
 The recording appears to show a five-card personal photo carousel, but the video only exposes a few images. The carousel displays the photos you add locally; no unrelated personal images are included.
 
