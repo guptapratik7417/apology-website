@@ -5,6 +5,19 @@ const PERSONALIZATION = {
 
 document.querySelectorAll('[data-name]').forEach(node => { node.textContent = PERSONALIZATION.name; });
 
+const song = document.querySelector('#apology-song');
+async function startSong() {
+  if (!song.paused) return;
+  try {
+    await song.play();
+    const button = document.querySelector('.sound-toggle');
+    button.classList.add('active');
+    button.setAttribute('aria-label', 'Pause the song');
+  } catch (error) {
+    showToast('Tap the music button to play the melody');
+  }
+}
+
 const panels = [...document.querySelectorAll('.page-panel')];
 let activePage = 0;
 function showPage(index) {
@@ -17,7 +30,10 @@ function showPage(index) {
   document.querySelectorAll('.page-count').forEach(node => { node.textContent = `${activePage + 1} / ${panels.length}`; });
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-document.querySelectorAll('.next-page').forEach(button => button.addEventListener('click', () => showPage(activePage + 1)));
+document.querySelectorAll('.next-page').forEach(button => button.addEventListener('click', () => {
+  startSong();
+  showPage(activePage + 1);
+}));
 document.querySelectorAll('.prev-page').forEach(button => button.addEventListener('click', () => showPage(activePage - 1)));
 document.querySelector('.restart-page').addEventListener('click', () => showPage(0));
 showPage(0);
@@ -67,7 +83,6 @@ document.querySelector('.gift-toggle').addEventListener('click', () => {
 });
 
 // Browsers require a user gesture before playing audio; the button toggles the supplied song.
-const song = document.querySelector('#apology-song');
 document.querySelector('.sound-toggle').addEventListener('click', async event => {
   const button = event.currentTarget;
   if (song.paused) {
