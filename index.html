@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4e5fa">
+  <meta name="description" content="A little apology, made with love.">
+  <title>A Little Apology 💜</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page paged">
+    <div class="ambient" aria-hidden="true"></div>
+    <button class="sound-toggle" type="button" aria-label="Toggle gentle music" title="Toggle music"><span>♫</span></button>
+    <audio id="apology-song" src="assets/apology-song.mp3" preload="metadata" loop></audio>
+    <button class="gift-toggle" type="button" aria-label="Open a little surprise" title="A little surprise">🎁</button>
+    <div class="sprinkles" aria-hidden="true"></div>
+
+    <section class="hero story-section page-panel active" data-page="0" aria-hidden="false">
+      <div class="sticker teddy" aria-hidden="true"><span>I'm<br>Sorry</span><small>♥</small></div>
+      <h1><span data-name>Shivangi</span>... I Have<br>Something to Say 🥺</h1>
+      <p class="script">I just want to say...</p>
+      <button class="next-page" type="button" aria-label="Next page">Continue <span>→</span></button>
+    </section>
+
+    <section class="story-section page-panel" id="truth" data-page="1" aria-hidden="true">
+      <div class="sticker cuddle" aria-hidden="true"><span>♡</span></div>
+      <h2>I Know I Hurt You</h2>
+      <p class="script">I never wanted to be the reason you felt this way.</p>
+      <div class="page-controls"><button class="prev-page" type="button">← Back</button><span class="page-count"></span><button class="next-page" type="button">Continue →</button></div>
+    </section>
+
+    <section class="story-section page-panel" data-page="2" aria-hidden="true">
+      <div class="sticker shy" aria-hidden="true">🥺</div>
+      <h2>You Mean Everything</h2>
+      <p class="script">I want to do better, not just say it.</p>
+      <div class="page-controls"><button class="prev-page" type="button">← Back</button><span class="page-count"></span><button class="next-page" type="button">Continue →</button></div>
+    </section>
+
+    <section class="story-section page-panel" data-page="3" aria-hidden="true">
+      <div class="sticker panda" aria-hidden="true">🐼</div>
+      <h2>I'm Truly Sorry</h2>
+      <p class="script">I want to make it up to you.</p>
+      <div class="page-controls"><button class="prev-page" type="button">← Back</button><span class="page-count"></span><button class="next-page" type="button">Open my letter →</button></div>
+    </section>
+
+    <section class="letter-section page-panel" id="letter" data-page="4" aria-hidden="true">
+      <div class="envelope-wrap" role="button" tabindex="0" aria-label="Open the letter">
+        <div class="envelope"><div class="letter-preview"><span>♥</span><span>♥</span><span>♥</span></div></div>
+      </div>
+      <article class="letter-card" aria-live="polite">
+        <h2>Hi <span data-name>Shivangi</span>, 💙</h2>
+        <p class="script letter-copy">I let my ego talk when my heart just wanted peace. I choose</p>
+        <p class="letter-signoff">With all my heart,</p>
+      </article>
+      <div class="bouquet" aria-hidden="true">💐</div>
+      <div class="page-controls"><button class="prev-page" type="button">← Back</button><span class="page-count"></span><button class="next-page" type="button">Continue →</button></div>
+    </section>
+
+    <section class="memories story-section page-panel" data-page="5" aria-hidden="true">
+      <h2>Our Memorable Good Moments 💙</h2>
+      <div class="polaroid-deck" aria-label="Our memorable moments">
+        <button class="polaroid previous" type="button" aria-label="Previous memory"><img src="assets/moment-2.jpg" alt="A memorable moment together" onerror="this.hidden=true"></button>
+        <button class="polaroid current" type="button" aria-label="Next memory"><img src="assets/moment-1.jpg" alt="A memorable moment together" onerror="this.hidden=true"><span>💜</span><small>Add a photo in assets/moment-1.jpg</small></button>
+        <button class="polaroid next" type="button" aria-label="Next memory"><img src="assets/moment-3.jpg" alt="A memorable moment together" onerror="this.hidden=true"></button>
+      </div>
+      <p class="swipe-hint"><span class="dots"></span> Swipe for the rest</p>
+      <p class="made-with">💙 Made with care, just for you. — Pratik</p>
+      <div class="page-controls"><button class="prev-page" type="button">← Back</button><span class="page-count"></span><button class="restart-page" type="button">Read again ↺</button></div>
+    </section>
+  </main>
+  <div class="toast" role="status">A little surprise, just for you 💌</div>
+  <script src="script.js"></script>
+</body>
+</html>
