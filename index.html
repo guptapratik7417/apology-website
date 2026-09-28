@@ -6,9 +6,22 @@
   <meta name="theme-color" content="#f4e5fa">
   <meta name="description" content="A little apology, made with love.">
   <title>A Little Apology 💜</title>
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
+  <script src="login-config.js?v=1"></script>
+  <script>if (window.APLOGY_LOGIN?.enabled) document.documentElement.classList.add('login-required');</script>
 </head>
 <body>
+  <section class="login-gate" id="login-gate" aria-labelledby="login-title" hidden>
+    <form class="login-card" id="login-form">
+      <div class="login-heart" aria-hidden="true">💜</div>
+      <h1 id="login-title">A little surprise for you</h1>
+      <p>Sign in to open your page</p>
+      <label>Username<input name="username" autocomplete="username" required></label>
+      <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit">Open my surprise</button>
+      <p class="login-error" id="login-error" role="status"></p>
+    </form>
+  </section>
   <main class="page paged">
     <div class="ambient" aria-hidden="true"></div>
     <button class="sound-toggle" type="button" aria-label="Toggle gentle music" title="Toggle music"><span>♫</span></button>
@@ -70,6 +83,6 @@
     </section>
   </main>
   <div class="toast" role="status">A little surprise, just for you 💌</div>
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

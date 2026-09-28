@@ -2,6 +2,8 @@
 
 A responsive, one-screen-at-a-time apology story inspired by the supplied screen recording. It uses plain HTML, CSS, and JavaScript and is ready for GitHub Pages. The melody button plays the supplied song from `assets/apology-song.mp3`.
 
+The optional client-side login gate is controlled by `enabled` in `login-config.js`. This file is public with the rest of the site; it is a casual prompt, not real access control.
+
 ## Run locally
 
 The story is presented one screen at a time. Use Continue/Back, swipe vertically or horizontally, scroll the mouse wheel, or use the arrow/Page keys. Horizontal swipes on the memory cards change photos. Open `index.html` in a browser, or serve this folder with any static file server (for example `python3 -m http.server 8000` from this directory) and visit `http://localhost:8000`.
